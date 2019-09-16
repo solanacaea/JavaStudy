@@ -2,12 +2,16 @@ package java8.collection;
 
 import java.util.ArrayDeque;
 import java.util.LinkedList;
+import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.concurrent.PriorityBlockingQueue;
 
 public class QueueSample {
 
 	public static void main(String[] args) {
-		queueSample();//FIFO
+//		queueSample();//FIFO
+//		priorityQueueSample();
+		priorityBlockingQueue();
 	}
 	
 	private static void queueSample() {
@@ -37,4 +41,37 @@ public class QueueSample {
     	
     }
     
+    private static void priorityQueueSample() {
+
+		PriorityQueue<String> pq = new PriorityQueue<>();
+		pq.add("c");
+		pq.add("d");
+		pq.add("b");
+		pq.offer("a");
+		pq.offer("c");
+		pq.offer("a");
+		System.out.println(pq);//the order? 
+//		System.out.println("peek: " + pq.peek());
+//		System.out.println("poll: " + pq.poll());
+		boolean removed = pq.remove("a");//which c is removed?
+		System.out.println(removed);
+		System.out.println(pq);
+    }
+    
+    private static void priorityBlockingQueue() {
+    	
+    	PriorityBlockingQueue<String> q = new PriorityBlockingQueue<>();
+    	q.put("123");
+    	try {
+			System.out.println(q.take());
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	q.offer("abc");
+    	System.out.println(q.toString());
+//    	q.drainTo(null);
+    }
+    
 }
+
