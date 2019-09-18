@@ -4,14 +4,17 @@ import java.util.ArrayDeque;
 import java.util.LinkedList;
 import java.util.PriorityQueue;
 import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.PriorityBlockingQueue;
+import java.util.stream.IntStream;
 
 public class QueueSample {
 
 	public static void main(String[] args) {
 //		queueSample();//FIFO
 //		priorityQueueSample();
-		priorityBlockingQueue();
+//		priorityBlockingQueue();
+		arrayBlockingQueue();
 	}
 	
 	private static void queueSample() {
@@ -71,6 +74,19 @@ public class QueueSample {
     	q.offer("abc");
     	System.out.println(q.toString());
 //    	q.drainTo(null);
+    }
+    
+    private static void arrayBlockingQueue() {
+    	ArrayBlockingQueue<String> q = new ArrayBlockingQueue<>(20);
+    	IntStream.range(0, 20).boxed().forEach(i -> q.offer(i.toString()));
+//    	System.out.println(q.add("a"));
+//    	System.out.println(q.offer("a"));
+    	try {
+			q.put("a");
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
 }
